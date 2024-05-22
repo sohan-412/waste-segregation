@@ -64,7 +64,7 @@
               <div class="card-header">
                 <h3 class="card-title">
                   <i class="fas fa-chart-pie mr-1"></i>
-                  Using YOLOv9
+                  Using YOLO8
                 </h3>
               </div>
               <div class="card-body">
@@ -72,15 +72,35 @@
                   <div class="chart tab-pane active" id="revenue-chart"
                         style="position: relative; height: 700px;">
             
-                   <form class="form-signin col-lg-3" method=post enctype=multipart/form-data name="form1">
-                      <h1 class="h3 mb-3 font-weight-normal">Upload any image or video</h1>
-                      <input type="file" name="file" class="form-control-file" id="inputfile" onchange="displayUploadedImage(event)">
-                      <br/>
-                      <img id="uploaded-image-preview" style="display: none; width: 400px; height: 400px; margin-top: 10px;" />
-                      <br/>
-                      <button class="btn btn-block btn-default btn-sm" type="submit">Upload</button>
-                      <p class="mt-5 mb-3 text-muted">Built using Pytorch & Flask</p>
-                   </form>
+                        <form class="form-signin col-lg-3" method="post" enctype="multipart/form-data" name="form1">
+                          <h1 class="h3 mb-3 font-weight-normal">Upload any image or video</h1>
+                          <input type="file" name="file" class="form-control-file" id="inputfile" onchange="displayUploadedImage(event)">
+                          <br/>
+                          <img id="uploaded-image-preview" style="display: none; width: 400px; height: 400px; margin-top: 10px;" />
+                          <br/>
+                          <button class="btn btn-block btn-default btn-sm" type="submit">Upload</button>
+                          <a id="download-pdf" class="btn btn-block btn-primary btn-sm" href="/download_pdf" style="display: none;">Download PDF</a>
+                          <p class="mt-5 mb-3 text-muted">Built using Pytorch & Flask</p>
+                      </form>
+                      
+                      <script>
+                          function displayUploadedImage(event) {
+                              const input = event.target;
+                              const reader = new FileReader();
+                              reader.onload = function() {
+                                  const dataURL = reader.result;
+                                  const output = document.getElementById('uploaded-image-preview');
+                                  output.src = dataURL;
+                                  output.style.display = 'block';
+                                  document.getElementById('download-pdf').style.display = 'block';
+                              };
+                              reader.readAsDataURL(input.files[0]);
+                          }
+                      </script>
+                      
+                      
+                      
+                        
 
                 </div>
               </div>
@@ -92,7 +112,7 @@
               <div class="card-header">
                 <h3 class="card-title">
                   <i class="fas fa-chart-pie mr-1"></i>
-                  YOLOv9 Object Detection Results
+                  YOLOv8 Object Detection Results
                 </h3>
               </div>
               <div class="card-body">
